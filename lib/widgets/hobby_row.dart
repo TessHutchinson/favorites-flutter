@@ -29,8 +29,12 @@ class HobbyRow extends StatelessWidget {
           },
           icon: Icon(
             hobby.isFavorite
-                ? Icons.favorite
-                : Icons.favorite_border,
+                ? Icons.favorite :
+                 Icons.favorite_border,
+              color:
+              hobby.isFavorite ?
+              Colors.red :
+              Colors.black54
           ),
         ),
       ),

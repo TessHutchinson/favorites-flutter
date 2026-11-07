@@ -5,6 +5,28 @@ import 'package:provider/provider.dart';
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
+    void confirmClear(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text("Clear all favorites?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text("Cancel"),
+          ),
+          TextButton(
+            onPressed: () {
+              context.read<FavoritesProvider>().clearFavorites();
+              Navigator.pop(dialogContext);
+            },
+            child: const Text("Clear"),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -43,6 +65,12 @@ class SettingsScreen extends StatelessWidget {
                     },
                   ),
                 ],
+              ),
+                 const SizedBox(height: 24),
+
+              ElevatedButton(
+                onPressed: () => confirmClear(context),
+                child: const Text("Clear Favorites"),
               ),
             ],
           ),
